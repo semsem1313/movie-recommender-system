@@ -1,6 +1,6 @@
 # 🎬 Movie Recommendation System
 
-A content-based movie recommender that suggests similar films based on genre, cast, crew, and plot keywords — built with Python, scikit-learn, and Streamlit.
+A content-based movie recommender that suggests similar films based on genre, cast, crew, and plot keywords. This was built with Python, scikit-learn, and Streamlit.
 
 **Live Demo →** `https://your-app-name.streamlit.app` *(update this after deploying)*
 
@@ -8,7 +8,7 @@ A content-based movie recommender that suggests similar films based on genre, ca
 
 ## 🧠 How It Works
 
-The algorithm builds a **tag** for every movie by combining plot overview, genres, top 3 cast members, director, and keywords. It vectorizes these tags with `CountVectorizer` and computes **cosine similarity** between all movies. Pick a movie → get the 5 closest matches.
+The algorithm builds a **tag** for every movie by combining plot overview, genres, top 3 cast members, director and keywords. Then what I did was I used a PorterStemmer for the tags columns. So all the words like [loving,loved,lover] just becomes **love**. After this I used a vectorizer for these tags with `CountVectorizer` with max_features=5000(picks the most frequent 5000 words) which the algo then vectorizes and computes **cosine similarity** between all movies. Pick a movie → get the 5 closest matches.
 
 ---
 
@@ -17,19 +17,19 @@ The algorithm builds a **tag** for every movie by combining plot overview, genre
 ```
 movie-recommender/
 │
-├── website.py                 ← Streamlit web app
-├── Project_RP1.ipynb          ← Model training notebook (run to generate pkl files)
+├── website.py                             ← Streamlit web app
+├── movie-recommender-model.ipynb          ← Model training notebook (run to generate pkl files)
 │
-├── movies_dict.pkl            ← Processed movie data (~2MB)
-├── similarity_matrix.pkl      ← Cosine similarity matrix (~176MB, stored via Git LFS)
+├── movies_dict.pkl                        ← Processed movie data (~2MB)
+├── similarity_matrix.pkl                  ← Cosine similarity matrix (~176MB, stored via Git LFS)
 │
 ├── requirements.txt
-├── .gitattributes             ← Git LFS config
+├── .gitattributes                         ← Git LFS config
 ├── .gitignore
 └── README.md
 ```
 
-> ⚠️ The CSV datasets are **not included** — download from [Kaggle TMDB 5000](https://www.kaggle.com/datasets/tmdb/tmdb-movie-metadata).
+> ⚠️ The datasets are **included** as csv files.
 
 ---
 
@@ -37,7 +37,7 @@ movie-recommender/
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/movie-recommender.git
-cd movie-recommender
+cd movie-recommender-system
 pip install -r requirements.txt
 streamlit run website.py
 ```
@@ -48,7 +48,7 @@ streamlit run website.py
 
 ## 🔄 Retrain the Model (Google Colab)
 
-1. Open `Project_RP1.ipynb` in [Google Colab](https://colab.research.google.com)
+1. Open `movie-recommender-model.ipynb` in [Google Colab](https://colab.research.google.com)
 2. Upload `tmdb_5000_movies.csv` and `tmdb_5000_credits.csv` via the **Files panel** (folder icon, left sidebar)
 3. Run all cells
 4. The last cell auto-downloads `movies_dict.pkl` and `similarity_matrix.pkl` to your computer
@@ -56,62 +56,19 @@ streamlit run website.py
 
 ---
 
-## ☁️ Deploy on Streamlit Cloud (Free)
-
-> ⚠️ `similarity_matrix.pkl` is ~176MB. GitHub blocks files over 100MB — you **must** use Git LFS.
-
-### Step 1 — Install Git LFS
-
-```bash
-# macOS
-brew install git-lfs
-
-# Windows (via Chocolatey)
-choco install git-lfs
-# or download installer from https://git-lfs.com
-
-# Ubuntu / Debian
-sudo apt install git-lfs
-
-# After installing on any OS:
-git lfs install
-```
-
-### Step 2 — Push to GitHub
-
-```bash
-git init
-git lfs track "similarity_matrix.pkl"
-git add .
-git commit -m "initial commit"
-git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/movie-recommender.git
-git push -u origin main
-```
-
-### Step 3 — Deploy
-
-1. Go to [share.streamlit.io](https://share.streamlit.io) → sign in with GitHub
-2. Click **New app**
-3. Select your repo → branch `main` → main file: `website.py`
-4. Click **Deploy** 🚀
-
-Live in ~2 minutes at `https://your-app-name.streamlit.app`.
-
----
 
 ## 🗂️ What to Push vs Skip
 
-| File | Push? | Reason |
-|------|:-----:|--------|
-| `website.py` | ✅ | Main app |
-| `Project_RP1.ipynb` | ✅ | Documents the model |
-| `movies_dict.pkl` | ✅ | Small (~2MB), needed by app |
-| `similarity_matrix.pkl` | ✅ via Git LFS | Large (~176MB), needed by app |
-| `requirements.txt` | ✅ | Streamlit Cloud installs from this |
-| `.gitattributes` | ✅ | Required for Git LFS |
-| `tmdb_5000_movies.csv` | ❌ | Too large — get from Kaggle |
-| `tmdb_5000_credits.csv` | ❌ | Too large — get from Kaggle |
+| File | Push? | Reason                                                      |
+|------|:-----:|-------------------------------------------------------------|
+| `website.py` | ✅ | Main app                                                    |
+| `Project_RP1.ipynb` | ✅ | Documents the model                                         |
+| `movies_dict.pkl` | ✅ | Small (~2MB), needed by app                                 |
+| `similarity_matrix.pkl` | ✅ via Git LFS | Large (~176MB), needed by app                               |
+| `requirements.txt` | ✅ | Streamlit Cloud installs from this                          |
+| `.gitattributes` | ✅ | Required for Git LFS                                        |
+| `tmdb_5000_movies.csv` | ✅ | Too large but you can download the raw file |
+| `tmdb_5000_credits.csv` | ✅ | Too large but you can download the raw file                                |
 
 ---
 
@@ -142,6 +99,3 @@ Live in ~2 minutes at `https://your-app-name.streamlit.app`.
 
 ---
 
-## 📄 License
-
-MIT — free to use and modify.
