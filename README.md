@@ -12,6 +12,11 @@ The algorithm builds a **tag** for every movie by combining plot overview, genre
 
 ---
 
+## ⚙️ Try It Out
+Here is the link to the website: https://movie-recommender-system-tepxzmb5pnmcibhkxhr23z.streamlit.app/
+
+---
+
 ## 📁 Repository Structure
 
 ```
@@ -36,10 +41,10 @@ movie-recommender/
 ## 🚀 Run Locally
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/movie-recommender.git
-cd movie-recommender-system
-pip install -r requirements.txt
-streamlit run website.py
+$ git clone https://github.com/YOUR_USERNAME/movie-recommender.git
+$ cd movie-recommender-system
+$ pip install -r requirements.txt
+$ streamlit run website.py
 ```
 
 > The pkl files are already in the repo. If you want to retrain, see the Colab section below.
@@ -88,14 +93,16 @@ streamlit run website.py
 
 ## 🔧 Common Issues
 
-**Push fails — file too large**
+**Push fails :— file too large**
 → Make sure you ran `git lfs install` and `git lfs track "similarity_matrix.pkl"` *before* `git add .`
 
-**Streamlit Cloud — module not found**
+**Streamlit Cloud :— module not found**
 → Make sure the package is listed in `requirements.txt`
 
-**Colab — CSV not found**
+**Colab :- CSV not found**
 → Upload via the Files panel (left sidebar), not Google Drive mount
 
 ---
+## Honest Review
 
+This site has an extremely basic design at the moment. In all honesty, I have explored the option of fetching posters of those movies from TMDB, and it turned out to be quite challenging due to my relative inexperience in web developing. And afterwards, I decided that it's not worth spending time on fetching posters, as what I wanted to achieve in this project was to build a recommendation algorithm. This was a great experience for me because I wanted to understand how the stemming algorithm worked, how it could transform a messy raw data into something readable for machines through the use of vectorization, how it determined similarity using cosine similarity, etc. These things interested me deeply, and so I focused entirely on learning these.
