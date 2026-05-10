@@ -6,7 +6,7 @@ A content-based movie recommender that suggests similar films based on genre, ca
 
 ## 🧠 How It Works
 
-The algorithm builds a `tag` for every movie by combining plot overview, genres, top 3 cast members, director and keywords. Then what I did was I used a PorterStemmer for the tags columns. So all the words like [loving,loved,lover] just becomes **love**. After this I used a vectorizer for these tags with `CountVectorizer` with max_features=5000(picks the most frequent 5000 words) which the algo then vectorizes and computes **cosine similarity** between all movies. Pick a movie → get the 5 closest matches.
+The algorithm builds a `tag` for every movie by combining plot overview, genres, top 3 cast members, director and keywords. Then what the algo did was it used a PorterStemmer for the tags. So all the words like [loving,loved,lover] just becomes **love**. After this it used a vectorizer for these tags with `CountVectorizer` with max_features=5000(picks the most frequent 5000 words) which the algo then vectorizes and computes **cosine similarity** between all movies. Pick a movie → get the 5 closest matches.
 
 ---
 
@@ -60,12 +60,12 @@ $ streamlit run website.py
 ---
 
 
-## 🗂️ What to Push vs Skip
+## 🗂️ What to Push
 
 | File | Push? | Reason                                                      |
 |------|:-----:|-------------------------------------------------------------|
 | `website.py` | ✅ | Main app                                                    |
-| `Project_RP1.ipynb` | ✅ | Documents the model                                         |
+| `movie-recommender-model.ipynb` | ✅ | Documents the model                                         |
 | `movies_dict.pkl` | ✅ | Small (~2MB), needed by app                                 |
 | `similarity_matrix.pkl` | ✅ via Git LFS | Large (~176MB), needed by app                               |
 | `requirements.txt` | ✅ | Streamlit Cloud installs from this                          |
@@ -101,6 +101,6 @@ $ streamlit run website.py
 → Upload via the Files panel (left sidebar), not Google Drive mount
 
 ---
-## Honest Review
+## 🫡 Honest Review
 
 This site has an extremely basic design at the moment. In all honesty, I have explored the option of fetching posters of those movies from TMDB, and it turned out to be quite challenging due to my relative inexperience in web developing. And afterwards, I decided that it's not worth spending time on fetching posters, as what I wanted to achieve in this project was to build a recommendation algorithm. This was a great experience for me because I wanted to understand how the stemming algorithm worked, how it could transform a messy raw data into something readable for machines through the use of vectorization, how it determined similarity using cosine similarity, etc. These things interested me deeply, and so I focused entirely on learning these.
