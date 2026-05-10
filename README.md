@@ -1,14 +1,12 @@
-# 🎬 Movie Recommendation System
+# 🎬 Movie Recommender System
 
 A content-based movie recommender that suggests similar films based on genre, cast, crew, and plot keywords. This was built with Python, scikit-learn, and Streamlit.
-
-**Live Demo →** `https://your-app-name.streamlit.app` *(update this after deploying)*
 
 ---
 
 ## 🧠 How It Works
 
-The algorithm builds a **tag** for every movie by combining plot overview, genres, top 3 cast members, director and keywords. Then what I did was I used a PorterStemmer for the tags columns. So all the words like [loving,loved,lover] just becomes **love**. After this I used a vectorizer for these tags with `CountVectorizer` with max_features=5000(picks the most frequent 5000 words) which the algo then vectorizes and computes **cosine similarity** between all movies. Pick a movie → get the 5 closest matches.
+The algorithm builds a `tag` for every movie by combining plot overview, genres, top 3 cast members, director and keywords. Then what I did was I used a PorterStemmer for the tags columns. So all the words like [loving,loved,lover] just becomes **love**. After this I used a vectorizer for these tags with `CountVectorizer` with max_features=5000(picks the most frequent 5000 words) which the algo then vectorizes and computes **cosine similarity** between all movies. Pick a movie → get the 5 closest matches.
 
 ---
 
